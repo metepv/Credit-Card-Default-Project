@@ -52,6 +52,6 @@ column_size = int(input("Specified column size to be imported: "))
 
 matrix  = decision_matrix_function(raw_data, column_size) #Here the ID numbers of customers present in the matrix.
 matrix_numpy = np.array(matrix)
-X = matrix_numpy[:, 1:]
+X = matrix_numpy[:, 1:] # X = [X1,X2,X3,X4,...,X23]
 print(X)
 
