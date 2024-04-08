@@ -7,6 +7,8 @@ Module 1:This module imports raw data in a specified size and generates
 
 """
 
+import numpy as np
+
 def decision_matrix_function(raw_data,column_size):
     #this function will take the raw data and column size
     #and will return the main X decision matrix as an output.
@@ -48,5 +50,8 @@ column_size = int(input("Specified column size to be imported: "))
 #X1,X2,X3,X4,...,X23.
 #decision_matrix_function(raw_data, column_size)
 
-X = decision_matrix_function(raw_data, column_size)
+matrix  = decision_matrix_function(raw_data, column_size) #Here the ID numbers of customers present in the matrix.
+matrix_numpy = np.array(matrix)
+X = matrix_numpy[:, 1:]
+print(X)
 
