@@ -1,4 +1,5 @@
 """
+Trial
 EEE 485 PROJECT: Credit Card Default
 
 Module 1:This module imports raw data in a specified size and generates 
