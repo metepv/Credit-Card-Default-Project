@@ -1,10 +1,8 @@
 """
-
 EEE 485 PROJECT: Credit Card Default
 
 Module 1:This module imports raw data in a specified size and generates 
-         main decision matrix X.
-
+         main decision matrix X and response vector Y.
 """
 
 import numpy as np
@@ -13,9 +11,10 @@ def decision_matrix_function(raw_data,column_size):
     #this function will take the raw data and column size
     #and will return the main X decision matrix as an output.
     
-    X = [] #main decision matrix which contains predictors.
+    predictor_matrix = [] 
+    response_vector = []
      
-    for i in range(1,column_size+23):                        #first two line are predictor names.
+    for i in range(1,column_size+2):                        #first two line are predictor names.
         
         column_vector_str = raw_data.readline()
         """
@@ -37,23 +36,24 @@ def decision_matrix_function(raw_data,column_size):
         except ValueError:
             continue
         """
-        
+
         #due to the integer-float-string conversion the code above generates
         #matrix with column dimension less than the input value.
 
         if column_vector_str[0].isdigit():
             column_vector_lst = column_vector_str.split(',')
-            column_vector_lst[-1] = column_vector_lst[0:-2]
+            column_vector_lst[-1] = column_vector_lst[-1][0:1]
+            response_vector.append(column_vector_lst[-1])
 
-            column_vector_int_lst = []                                                 
-            for i2 in range(0,len(column_vector_lst)-1):
-                 column_vector_int_lst.append(float(column_vector_lst[i2]))
+            column_vector_float_lst = [1]                                                 
+            for i2 in range(1,len(column_vector_lst)-1): # last value is the y value of the regression.
+                 column_vector_float_lst.append(float(column_vector_lst[i2]))
 
-            X.append(column_vector_int_lst)
+            predictor_matrix.append(column_vector_float_lst)
         else:
             continue
-        
-    return X
+
+    return predictor_matrix, response_vector
 
 raw_data = open("UCI_Credit_Card.csv",'r')
 #the raw data obtained from kaggle.com as below:
@@ -65,10 +65,14 @@ column_size = int(input("Specified column size to be imported: "))
 #X1,X2,X3,X4,...,X23.
 #decision_matrix_function(raw_data, column_size)
 
-matrix  = decision_matrix_function(raw_data, column_size) #Here the ID numbers of customers present in the matrix.
-matrix_numpy = np.array(matrix)
-X = matrix_numpy[:, 1:] #X = [X1,X2,X3,X4,...,X23]
+(predictor_matrix_numpy, response_vector) = decision_matrix_function(raw_data,column_size)
+X = np.array(predictor_matrix_numpy)
+Y = np.array(response_vector)
+dimensions_X = X.shape
+dimensions_Y = Y.shape
 print(X)
-dimensions = X.shape
-print("X",":","matrix with dimensions ",dimensions[0],"x",dimensions[1],)
+print(Y)
+print('X',': the main decision matrix with dimensions ',dimensions_X[0],'x',dimensions_X[1])
+print('Y',': the response vector with colum size',dimensions_Y[0])
+
 
