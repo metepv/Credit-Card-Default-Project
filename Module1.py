@@ -7,9 +7,19 @@ Module 1:This module imports raw data in a specified size and generates
 
 import numpy as np
 
-def decision_matrix_function(raw_data,column_size):
+def data_to_matrix_function():
     #this function will take the raw data and column size
     #and will return the main X decision matrix as an output.
+
+    raw_data = open("UCI_Credit_Card.csv",'r')
+    #the raw data obtained from kaggle.com as below:
+    #https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset?resource=download
+
+    column_size = int(input("Specified column size to be imported: "))
+    #column size will be input for model training with X which will have variying column size
+    #there are 23 number of fixed features.
+    #X1,X2,X3,X4,...,X23.
+    #decision_matrix_function(raw_data, column_size)
     
     predictor_matrix = [] 
     response_vector = []
@@ -55,17 +65,7 @@ def decision_matrix_function(raw_data,column_size):
 
     return predictor_matrix, response_vector
 
-raw_data = open("UCI_Credit_Card.csv",'r')
-#the raw data obtained from kaggle.com as below:
-#https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset?resource=download
-
-column_size = int(input("Specified column size to be imported: "))
-#column size will be input for model training with X which will have variying column size
-#there are 23 number of fixed features.
-#X1,X2,X3,X4,...,X23.
-#decision_matrix_function(raw_data, column_size)
-
-(predictor_matrix_numpy, response_vector) = decision_matrix_function(raw_data,column_size)
+(predictor_matrix_numpy, response_vector) = data_to_matrix_function()
 X = np.array(predictor_matrix_numpy)
 Y = np.array(response_vector)
 dimensions_X = X.shape
