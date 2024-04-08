@@ -73,6 +73,6 @@ dimensions_Y = Y.shape
 print(X)
 print(Y)
 print('X',': the main decision matrix with dimensions ',dimensions_X[0],'x',dimensions_X[1])
-print('Y',': the response vector with colum size',dimensions_Y[0])
+print('Y',': the response vector with column size',dimensions_Y[0])
 
 
