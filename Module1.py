@@ -15,7 +15,7 @@ def decision_matrix_function(raw_data,column_size):
     
     X = [] #main decision matrix which contains predictors.
      
-    for i in range(1,column_size+2):                        #first two line are predictor names.
+    for i in range(1,column_size+5):                        #first two line are predictor names.
         
         column_vector_str = raw_data.readline()
         
@@ -54,4 +54,6 @@ matrix  = decision_matrix_function(raw_data, column_size) #Here the ID numbers o
 matrix_numpy = np.array(matrix)
 X = matrix_numpy[:, 1:] # X = [X1,X2,X3,X4,...,X23]
 print(X)
+dimensions = X.shape
+print("X",":","matrix with dimensions ",dimensions[0],"x",dimensions[1],)
 
