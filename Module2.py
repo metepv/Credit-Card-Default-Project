@@ -13,5 +13,5 @@ Y = np.array(response_vector)               # Y is the response vector
 print(X)
 print(Y)
 
-Beta_coefficients = np.random.rand(24)
+Beta_coefficients = np.random.rand(24)      # B = [B0,B1,B2,B3,...B23]
 print(Beta_coefficients)
