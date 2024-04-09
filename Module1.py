@@ -53,7 +53,7 @@ def data_to_matrix_function():
         if column_vector_str[0].isdigit():
             column_vector_lst = column_vector_str.split(',')
             column_vector_lst[-1] = column_vector_lst[-1][0:1]
-            response_vector.append(column_vector_lst[-1])
+            response_vector.append(int(column_vector_lst[-1]))
 
             column_vector_float_lst = [1]                                                 
             for i2 in range(1,len(column_vector_lst)-1): # last value is the y value of the regression.
