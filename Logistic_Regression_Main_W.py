@@ -5,12 +5,14 @@ Module 2:This module takes the decision matrix X and the response vector Y to ma
          with logistic regression.
 """
 import numpy as np
+import time
 import Logistic_Regression_Preprocess as LRP
 
-def gradient_ascent(X,Y,B,iteration):
+def gradient_ascent(X,Y,B):
 
     Beta_new = np.zeros(24)
     Beta_old = Beta_coefficients
+    Beta_old2 = Beta_coefficients
 
     row_size = X.shape[0]
 
@@ -30,14 +32,15 @@ def gradient_ascent(X,Y,B,iteration):
     A = np.dot(np.dot(X_T,W), X)  #A = X_t*W*X
     A_inverse = np.linalg.inv(A)  #A^-1 = (X_t*W*X)^-1
 
-    
-    for i in range(0,iteration):
+    count = 0
+    while np.all(np.abs(Beta_new - Beta_old2)) > 0.9:
 
         A = np.dot(np.dot(X_T,W), X) #A = X_t*W*X
         A_inverse = np.linalg.inv(A) #A^-1 = (X_t*W*X)^-1
         C1 = np.dot(A_inverse,X_T)
         C2 = Y - Pi_vector
         C3 = np.dot(C1,C2)
+        Beta_old2 = Beta_old
         Beta_new = Beta_old + C3
 
         #updating matrices and coefficients.
@@ -48,7 +51,12 @@ def gradient_ascent(X,Y,B,iteration):
 
         for i in range(0, X.shape[0]):
             W[i,i] = logistic_function(Beta_old,X[i,:])*(1-logistic_function(Beta_old,X[i,:]))
+        
+        count += 1
+        
+        print(Beta_new)
 
+    print(count)
     return Beta_new
     
 
@@ -61,9 +69,10 @@ def logistic_function(beta_vector,X_i_colum_vector):
     
     return logistic_result
 
+start_time = time.time()
 
 (predictor_matrix_numpy, response_vector) = LRP.data_to_matrix_function()
-number_of_iteration = int(input("Iteration number: "))
+#number_of_iteration = int(input("Iteration number: "))
 X = np.array(predictor_matrix_numpy)        # X = [1,X1,X2,X3,...,X23] the decision matrix
 Y = np.array(response_vector)               # Y is the response vector
 #print(X)
@@ -71,16 +80,17 @@ Y = np.array(response_vector)               # Y is the response vector
 #print('X',': the main decision matrix with dimensions ',X.shape[0],'x',X.shape[1])
 #print('Y',': the response vector with column size',Y.shape[0])
 
-"""
-Beta_coefficients = np.random.rand(24)  # B = [B0,B1,B2,B3,...B23], unknown random coefficients which
-Beta_hat = np.zeros(24)
-print(Beta_coefficients) 
+
+Beta_coefficients = np.ones(24)*0.5 # B = [B0,B1,B2,B3,...B23], unknown random coefficients which
+#Beta_hat = np.zeros(24)
+#print(Beta_coefficients) 
 
 """
-Beta_coefficients = np.ones(24)*0.5  # B = [B0,B1,B2,B3,...B23], unknown random coefficients which
-#Beta_hat = np.zeros(24)          # will be updated in gradient ascent algorithm.
-#print(Beta_coefficients)                              
+Beta_coefficients = np.ones(24)  # B = [B0,B1,B2,B3,...B23], unknown random coefficients which
+Beta_hat = np.zeros(24)          # will be updated in gradient ascent algorithm.
+print(Beta_coefficients)                              
 
+"""
 """
 column1 = X[0,:]
 vector2 = np.transpose(Beta_coefficients)
@@ -90,8 +100,11 @@ print(result)
 #print(column1.shape[0]) 
 """
 
-Beta_hat = gradient_ascent(X,Y,Beta_coefficients,number_of_iteration)
+Beta_hat = gradient_ascent(X,Y,Beta_coefficients)
 print(Beta_hat)
 
+end_time = time.time()
+execution_time = end_time - start_time
+print("Execution time:", execution_time, "seconds")
 
 
