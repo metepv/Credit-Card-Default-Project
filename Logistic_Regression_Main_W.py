@@ -33,7 +33,10 @@ def gradient_ascent(X,Y,B):
     A_inverse = np.linalg.inv(A)  #A^-1 = (X_t*W*X)^-1
 
     count = 0
-    while np.all(np.abs(Beta_new - Beta_old2)) > 0.9:
+    error = Beta_new - Beta_old2
+    condition = 0.5 < np.all(np.abs(error)) < 1
+
+    while condition != True:
 
         A = np.dot(np.dot(X_T,W), X) #A = X_t*W*X
         A_inverse = np.linalg.inv(A) #A^-1 = (X_t*W*X)^-1
@@ -56,6 +59,9 @@ def gradient_ascent(X,Y,B):
         
         print(Beta_new)
 
+        error = Beta_new - Beta_old2
+        condition = 0.5 < np.all(np.abs(error)) < 1
+
     print(count)
     return Beta_new
     
@@ -64,7 +70,7 @@ def logistic_function(beta_vector,X_i_colum_vector):
     # y = exp(XiB)/1+exp(XiB) where Xi is column vector of the decision matrix X.
     logistic_result = np.longdouble()
     dot_product = np.longdouble()
-    dot_product = np.dot(beta_vector,X_i_colum_vector)/10000
+    dot_product = np.dot(beta_vector,X_i_colum_vector)/1000000
     logistic_result = np.exp(dot_product)/(1 + np.exp(dot_product))
     
     return logistic_result
@@ -81,7 +87,7 @@ Y = np.array(response_vector)               # Y is the response vector
 #print('Y',': the response vector with column size',Y.shape[0])
 
 
-Beta_coefficients = np.ones(24)*0.5 # B = [B0,B1,B2,B3,...B23], unknown random coefficients which
+Beta_coefficients = np.ones(24) # B = [B0,B1,B2,B3,...B23], unknown random coefficients which
 #Beta_hat = np.zeros(24)
 #print(Beta_coefficients) 
 
