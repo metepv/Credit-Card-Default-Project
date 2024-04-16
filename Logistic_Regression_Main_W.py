@@ -81,8 +81,8 @@ start_time = time.time()
 #number_of_iteration = int(input("Iteration number: "))
 X = np.array(predictor_matrix_numpy)        # X = [1,X1,X2,X3,...,X23] the decision matrix
 Y = np.array(response_vector)               # Y is the response vector
-#print(X)
-#print(Y)
+print(X)
+print(Y)
 #print('X',': the main decision matrix with dimensions ',X.shape[0],'x',X.shape[1])
 #print('Y',': the response vector with column size',Y.shape[0])
 
