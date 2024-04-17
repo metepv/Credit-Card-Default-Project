@@ -26,7 +26,7 @@ def data_to_matrix_function():
      
     for i in range(1,column_size+2):                        #first two line are predictor names.
         
-        column_vector_str = raw_data.readline()
+        row_vector_str = raw_data.readline()
         """
         try:
             first = column_vector_str[0] #if a line starts with a number it will
@@ -50,20 +50,25 @@ def data_to_matrix_function():
         #due to the integer-float-string conversion the code above generates
         #matrix with column dimension less than the input value.
 
-        if column_vector_str[0].isdigit():
-            column_vector_lst = column_vector_str.split(',')
-            column_vector_lst[-1] = column_vector_lst[-1][0:1]
-            response_vector.append(int(column_vector_lst[-1]))
+        if row_vector_str[0].isdigit():
+            row_vector_lst = row_vector_str.split(',')
+            row_vector_lst[-1] = row_vector_lst[-1][0:1]
+            response_vector.append(int(row_vector_lst[-1]))
 
-            column_vector_float_lst = [1]                                                 
-            for i2 in range(1,len(column_vector_lst)-1): # last value is the y value of the regression.
-                 column_vector_float_lst.append(float(column_vector_lst[i2]))
-
-            predictor_matrix.append(column_vector_float_lst)
+            row_vector_float_lst = [1]                                                 
+            for i2 in range(1,len(row_vector_lst)-1): # last value is the y value of the regression.
+                 row_vector_float_lst.append(float(row_vector_lst[i2]))
+            
+            predictor_matrix.append(row_vector_float_lst)
         else:
             continue
+    
+    response_vector_org = response_vector
+    #nomalization
+    #predictor_matrix=(predictor_matrix-(np.mean(predictor_matrix)))/np.std(predictor_matrix)
+    #response_vector=(response_vector-(np.mean(response_vector)))/np.std(response_vector)
 
-    return predictor_matrix, response_vector
+    return predictor_matrix, response_vector,response_vector_org
 
 """
 (predictor_matrix_numpy, response_vector) = data_to_matrix_function()
@@ -73,6 +78,10 @@ dimensions_X = X.shape
 dimensions_Y = Y.shape
 print(X)
 print(Y)
+
+"""
+
+"""
 print('X',': the main decision matrix with dimensions ',dimensions_X[0],'x',dimensions_X[1])
 print('Y',': the response vector with column size',dimensions_Y[0])
 """
