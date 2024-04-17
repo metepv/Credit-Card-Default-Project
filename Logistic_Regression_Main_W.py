@@ -65,7 +65,7 @@ def gradient_ascent():
         
         count += 1
         
-        print(Beta_new)
+        #print(Beta_new)
         print(count)
         if count == 100000:
             break
@@ -82,7 +82,8 @@ def logistic_function(beta_vector,X_i_colum_vector):
     dot_product = np.longdouble()
     dot_product = np.dot(beta_vector,X_i_colum_vector)/10000
     #dot_product = np.dot(beta_vector,X_i_colum_vector)/100000
-    logistic_result = np.exp(dot_product)/(1 + np.exp(dot_product))
+    #logistic_result = np.exp(dot_product)/(1 + np.exp(dot_product))
+    logistic_result = 1/(1 + np.exp(-dot_product))
     
     return logistic_result
 

@@ -72,13 +72,13 @@ def data_to_matrix_function():
     return predictor_matrix, response_vector,response_vector_org
 
 """
-(predictor_matrix_numpy, response_vector) = data_to_matrix_function()
+(predictor_matrix_numpy, response_vector, response_org) = data_to_matrix_function()
 X = np.array(predictor_matrix_numpy)
 Y = np.array(response_vector)
 dimensions_X = X.shape
 dimensions_Y = Y.shape
-print(X)
-print(Y)
+print(np.mean(X))
+print(np.mean(Y))
 
 """
 
