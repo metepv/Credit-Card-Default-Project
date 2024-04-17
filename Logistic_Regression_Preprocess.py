@@ -64,7 +64,8 @@ def data_to_matrix_function():
             continue
     
     response_vector_org = response_vector
-    #nomalization
+
+    #normalization
     #predictor_matrix=(predictor_matrix-(np.mean(predictor_matrix)))/np.std(predictor_matrix)
     #response_vector=(response_vector-(np.mean(response_vector)))/np.std(response_vector)
 

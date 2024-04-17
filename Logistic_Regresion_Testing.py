@@ -1,11 +1,10 @@
-"""
-EEE 485 PROJECT: Credit Card Default
 
-Module 3:
-"""
 import numpy as np
+import time as time
 import matplotlib.pyplot as plt
 import Logistic_Regression_Main_W as LRP_W
+
+start_time = time.time()
 
 (Beta_hat,X,Y,Y_un)= LRP_W.gradient_ascent()
 
@@ -44,5 +43,7 @@ print(log)
 accuracy = ((true_negative + true_positive)/n)*100
 print(accuracy)
 
-
+end_time = time.time()
+execution_time = end_time - start_time
+print(execution_time)
 

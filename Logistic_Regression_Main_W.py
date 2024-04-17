@@ -80,6 +80,7 @@ def logistic_function(beta_vector,X_i_colum_vector):
     # y = exp(XiB)/1+exp(XiB) where Xi is column vector of the decision matrix X.
     logistic_result = np.longdouble()
     dot_product = np.longdouble()
+    #dot_product = np.dot(beta_vector,X_i_colum_vector)/10000
     dot_product = np.dot(beta_vector,X_i_colum_vector)/10000
     logistic_result = np.exp(dot_product)/(1 + np.exp(dot_product))
     
