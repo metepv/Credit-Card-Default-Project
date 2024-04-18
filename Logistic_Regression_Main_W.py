@@ -8,12 +8,12 @@ import numpy as np
 import time
 import Logistic_Regression_Preprocess as LRP
 
-def gradient_ascent():
+def gradient_ascent(X,Y):
 
-    (predictor_matrix_numpy, response_vector) = LRP.data_to_matrix_function()
+    #(predictor_matrix_numpy, response_vector) = LRP.data_to_matrix_function()
     #number_of_iteration = int(input("Iteration number: "))
-    X = np.array(predictor_matrix_numpy)        # X = [1,X1,X2,X3,...,X23] the decision matrix
-    Y = np.array(response_vector)             # Y is the response vector
+    #X = np.array(predictor_matrix_numpy)        # X = [1,X1,X2,X3,...,X23] the decision matrix
+    #Y = np.array(response_vector)             # Y is the response vector
 
     Beta_coefficients = np.ones(24)*0.5 # B = [B0,B1,B2,B3,...B23], unknown random coefficients which
 
@@ -40,10 +40,8 @@ def gradient_ascent():
     A_inverse = np.linalg.inv(A)  #A^-1 = (X_t*W*X)^-1
 
     count = 0
-    error = Beta_new - Beta_old2
-    condition = 0.5 < np.all(np.abs(error)) < 1
 
-    while condition != True:
+    while count != 100000:
 
         A = np.dot(np.dot(X_T,W), X) #A = X_t*W*X
         A_inverse = np.linalg.inv(A) #A^-1 = (X_t*W*X)^-1
@@ -66,13 +64,9 @@ def gradient_ascent():
         
         #print(Beta_new)
         print(count)
-        if count == 100000:
-            break
-        error = Beta_new - Beta_old2
-        condition = 0.5 < np.all(np.abs(error)) < 1
 
     
-    return Beta_new, X, Y
+    return Beta_new
     
 
 def logistic_function(beta_vector,X_i_colum_vector):

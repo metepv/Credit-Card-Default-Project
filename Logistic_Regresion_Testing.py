@@ -9,7 +9,7 @@ start_time = time.time()
 (Beta_hat,X,Y)= LRP_W.gradient_ascent()
 
 n = len(X)
-lambda_parameter = 0.3
+lambda_parameter = 0.25
 log_estimate = []
 
 false_positive = 0
