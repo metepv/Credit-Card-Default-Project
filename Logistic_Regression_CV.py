@@ -12,8 +12,10 @@ all_data, all_response = LRP.data_to_matrix_function()
 all_data = np.array(all_data)
 all_response = np.array(all_response)
 
+iteration = int(input("Iteration number: "))
+
 fold_size = int(input("fold size: "))
-lambda_parameter_list = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9]
+lambda_parameter_list = [0.1,0.2,0.3,0.35,0.4,0.5,0.6,0.7,0.8,0.9]
 j_lst = np.random.choice(np.arange(0, 9+1), size=10, replace=False)
 f_matrix = []
 f_matrix_response = []
@@ -37,12 +39,14 @@ while fold_index != 10:
     X_test = f_matrix[fold_index]
 
     #for X_train
+    matrices_to_concatenate = []
     for fold in range(0,10):
         if fold != fold_index:
-            X_train = np.vstack(f_matrix[fold])
+            matrices_to_concatenate.append(f_matrix[fold])
         else:
             continue
-    
+    X_train = np.concatenate(matrices_to_concatenate,axis=0)
+
     #for Y_train
     Y_train = []
     for fold in range(0,10):
@@ -51,7 +55,10 @@ while fold_index != 10:
         else:
             continue
     
-    Beta_hat = LRM_W.gradient_ascent(X_train,Y_train)
+    Y_train = np.array(Y_train)
+    print(X_train.shape[0])
+    print(Y_train.shape[0])
+    Beta_hat = LRM_W.gradient_ascent(X_train,Y_train,iteration)
 
     #---------------training accuracy part-----------
     log_estimate_train = []
@@ -82,7 +89,7 @@ while fold_index != 10:
     #---------------testing accuracy part------------
     log_estimate_test = []
 
-    for row in range(0, len(X_train)):
+    for row in range(0, len(X_test)):
         result = LRM_W.logistic_function(Beta_hat, X_test[row])
         if result >= selected_lambda:
             log_estimate_test.append(1)
@@ -103,12 +110,15 @@ while fold_index != 10:
         elif (log_estimate_train[i] != Y_train[i]) and (Y_train[i] == 0):
             fold_testing_accuracy_elements[3] += 1
     
-    test_accuracy = (fold_testing_accuracy_elements[0] + fold_testing_accuracy_elements[1])/(all_data.shape[0]-fold_size)
+    test_accuracy = (fold_testing_accuracy_elements[0] + fold_testing_accuracy_elements[1])/(fold_size)
     
     accuracy_tuple = (training_accuracy,test_accuracy)
     accuracy_lst.append(accuracy_tuple)
     
     fold_index += 1
-    
+
+for i in range(0,10):
+    print(lambda_parameter_list[i],accuracy_lst[i],"\n")
+
 
 

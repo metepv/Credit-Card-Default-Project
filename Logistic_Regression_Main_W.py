@@ -8,7 +8,7 @@ import numpy as np
 import time
 import Logistic_Regression_Preprocess as LRP
 
-def gradient_ascent(X,Y):
+def gradient_ascent(X,Y,iteration_number):
 
     #(predictor_matrix_numpy, response_vector) = LRP.data_to_matrix_function()
     #number_of_iteration = int(input("Iteration number: "))
@@ -41,7 +41,7 @@ def gradient_ascent(X,Y):
 
     count = 0
 
-    while count != 100000:
+    while count != iteration_number:
 
         A = np.dot(np.dot(X_T,W), X) #A = X_t*W*X
         A_inverse = np.linalg.inv(A) #A^-1 = (X_t*W*X)^-1
