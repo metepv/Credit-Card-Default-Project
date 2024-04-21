@@ -26,28 +26,6 @@ def data_to_matrix_function():
     for i in range(1,column_size+2):                        #first two line are predictor names.
         
         column_vector_str = raw_data.readline()
-        """
-        try:
-            first = column_vector_str[0] #if a line starts with a number it will
-            first = int(first)           #it will be added as column to the matrix.
-            
-            column_vector_lst = column_vector_str.split(',') #splitting the line
-                                                             # to add it to a column vector.
-            
-            column_vector_lst[-1] = column_vector_lst[0:-2]  #last element is \n
-                                                             # which is removed.
-            column_vector_int_lst = []                                                 
-            for i2 in range(0,len(column_vector_lst)-1):
-                 column_vector_int_lst.append(int(column_vector_lst[i2]))
-                
-            X.append(column_vector_int_lst)                      
-            
-        except ValueError:
-            continue
-        """
-
-        #due to the integer-float-string conversion the code above generates
-        #matrix with column dimension less than the input value.
 
         if column_vector_str[0].isdigit():
             column_vector_lst = column_vector_str.split(',')

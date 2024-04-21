@@ -1,4 +1,4 @@
-
+"""
 import numpy as np
 import time as time
 import matplotlib.pyplot as plt
@@ -47,3 +47,4 @@ end_time = time.time()
 execution_time = end_time - start_time
 print(execution_time)
 
+"""

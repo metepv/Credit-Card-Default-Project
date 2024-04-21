@@ -6,16 +6,16 @@ Module 2:This module takes the decision matrix X and the response vector Y to ma
 """
 import numpy as np
 import time
-import Logistic_Regression_Preprocess as LRP
+import LR_Pre as LR_Pre
 
-def gradient_ascent(X,Y,iteration_number):
+def Newton_Raphson(X,Y,iteration_number):
 
     #(predictor_matrix_numpy, response_vector) = LRP.data_to_matrix_function()
     #number_of_iteration = int(input("Iteration number: "))
     #X = np.array(predictor_matrix_numpy)        # X = [1,X1,X2,X3,...,X23] the decision matrix
-    #Y = np.array(response_vector)             # Y is the response vector
+    #Y = np.array(response_vector)               # Y is the response vector
 
-    Beta_coefficients = np.ones(24)*0.5 # B = [B0,B1,B2,B3,...B23], unknown random coefficients which
+    Beta_coefficients = np.ones(24)*0.5          # B = [B0,B1,B2,B3,...B23], unknown random coefficients which
 
     Beta_new = np.zeros(24)
     Beta_old = Beta_coefficients
@@ -27,13 +27,11 @@ def gradient_ascent(X,Y,iteration_number):
     Pi_vector = []                          
     for i2 in range(0, row_size):
         Pi_vector.append(logistic_function(Beta_old,X[i2,:]))
-    #print(Pi_vector)
 
     #W matrix generation:
     W = np.eye(X.shape[0])
     for i in range(0, X.shape[0]):
         W[i,i] = logistic_function(Beta_old,X[i,:])*(1-logistic_function(Beta_old,X[i,:]))
-    #print(W)
 
     X_T = np.transpose(X)
     A = np.dot(np.dot(X_T,W), X)  #A = X_t*W*X
@@ -62,65 +60,17 @@ def gradient_ascent(X,Y,iteration_number):
         
         count += 1
         
-        #print(Beta_new)
         print(count)
 
-    
     return Beta_new
     
 
 def logistic_function(beta_vector,X_i_colum_vector):
-    # y = exp(XiB)/1+exp(XiB) where Xi is column vector of the decision matrix X.
+
     logistic_result = np.longdouble()
     dot_product = np.longdouble()
     dot_product = np.dot(beta_vector,X_i_colum_vector)/10000
-    #dot_product = np.dot(beta_vector,X_i_colum_vector)/100000
-    #logistic_result = np.exp(dot_product)/(1 + np.exp(dot_product))
+
     logistic_result = 1/(1 + np.exp(-dot_product))
     
     return logistic_result
-
-"""
-start_time = time.time()
-
-(predictor_matrix_numpy, response_vector) = LRP.data_to_matrix_function()
-#number_of_iteration = int(input("Iteration number: "))
-X = np.array(predictor_matrix_numpy)        # X = [1,X1,X2,X3,...,X23] the decision matrix
-Y = np.array(response_vector)     
-
-"""
-          # Y is the response vector
-#print(X)
-#print(Y)
-#print('X',': the main decision matrix with dimensions ',X.shape[0],'x',X.shape[1])
-#print('Y',': the response vector with column size',Y.shape[0])
-
-
-#Beta_hat = np.zeros(24)
-#print(Beta_coefficients) 
-
-"""
-Beta_coefficients = np.ones(24)  # B = [B0,B1,B2,B3,...B23], unknown random coefficients which
-Beta_hat = np.zeros(24)          # will be updated in gradient ascent algorithm.
-print(Beta_coefficients)                              
-
-"""
-"""
-column1 = X[0,:]
-vector2 = np.transpose(Beta_coefficients)
-result = np.dot(Beta_coefficients,column1)
-print(result)
-#print(Beta_coefficients.shape[0])
-#print(column1.shape[0]) 
-"""
-"""
-Beta_hat = gradient_ascent(X,Y,Beta_coefficients)
-print(Beta_hat)
-
-end_time = time.time()
-execution_time = end_time - start_time
-print("Execution time:", execution_time, "seconds")
-"""
-
-
-

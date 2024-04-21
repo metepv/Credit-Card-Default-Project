@@ -5,10 +5,10 @@ Module 3: K-Fold Cross-Validation for Logistic Regression
 
 """
 import numpy as np
-import Logistic_Regression_Preprocess as LRP
-import Logistic_Regression_Main_W as LRM_W
+import LR_Pre as LR_Pre
+import LR_Main as LRM_W
 
-all_data, all_response = LRP.data_to_matrix_function() 
+all_data, all_response = LR_Pre.data_to_matrix_function() 
 all_data = np.array(all_data)
 all_response = np.array(all_response)
 
@@ -58,7 +58,7 @@ while fold_index != 10:
     Y_train = np.array(Y_train)
     print(X_train.shape[0])
     print(Y_train.shape[0])
-    Beta_hat = LRM_W.gradient_ascent(X_train,Y_train,iteration)
+    Beta_hat = LRM_W.Newton_Raphson(X_train,Y_train,iteration)
 
     #---------------training accuracy part-----------
     log_estimate_train = []
