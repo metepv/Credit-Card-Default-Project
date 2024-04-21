@@ -1,15 +1,14 @@
-"""
-import numpy as np
+
+import torch
 import time as time
-import matplotlib.pyplot as plt
-import Logistic_Regression_Main_W as LRP_W
+import LR_Main_CUDA as LRM_CUDA
 
 start_time = time.time()
 
-(Beta_hat,X,Y)= LRP_W.gradient_ascent()
+(Beta_hat,X,Y)= LRM_CUDA.Newton_Raphson()
 
 n = len(X)
-lambda_parameter = 0.25
+lambda_parameter = 0.6
 log_estimate = []
 
 false_positive = 0
@@ -18,14 +17,14 @@ true_positive = 0
 true_negative = 0
 
 for row in range(0, len(X)):
-    result = LRP_W.logistic_function(Beta_hat, X[row])
+    result = LRM_CUDA.logistic_function(Beta_hat, X[row])
     if result >= lambda_parameter:
         log_estimate.append(1)
     else:
         log_estimate.append(0)
 
-y = np.array(Y)
-log = np.array(log_estimate)
+y = torch.FloatTensor.array(Y)
+log = torch.FloatTensor.array(log_estimate)
 
 for i in range(0,len(Y)):
     if (log_estimate[i] == Y[i]) and (Y[i] == 1):
@@ -47,4 +46,3 @@ end_time = time.time()
 execution_time = end_time - start_time
 print(execution_time)
 
-"""
