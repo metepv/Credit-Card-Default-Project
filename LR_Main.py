@@ -46,7 +46,6 @@ def Newton_Raphson(X,Y,iteration_number):
         C1 = np.dot(A_inverse,X_T)
         C2 = Y - Pi_vector
         C3 = np.dot(C1,C2)
-        Beta_old2 = Beta_old
         Beta_new = Beta_old + C3
 
         #updating matrices and coefficients.
