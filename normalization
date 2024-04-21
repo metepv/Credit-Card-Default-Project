@@ -1,8 +1,0 @@
-NORMALIZATION
-
-#NORMALIZATION
-    response_vector=(response_vector-(np.mean(response_vector)))/np.std(response_vector)
-    predictor_matrix=(predictor_matrix-(np.mean(predictor_matrix)))/np.std(predictor_matrix)
-    #print(np.mean(response_vector))
-
-bunu line 66 ya yapıştır preprocessingde
