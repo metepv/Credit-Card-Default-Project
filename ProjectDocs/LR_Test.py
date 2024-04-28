@@ -1,7 +1,7 @@
 
 import torch
 import time as time
-import LR_Main_CUDA as LRM_CUDA
+import ProjectDocs.LR_Main_CUDA as LRM_CUDA
 
 start_time = time.time()
 
