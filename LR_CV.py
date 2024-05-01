@@ -84,7 +84,7 @@ while fold_index != 10:
         elif (log_estimate_train[i] != Y_train[i]) and (Y_train[i] == 0):
             training_accuracy_elements[3] += 1
     
-    training_accuracy = (training_accuracy_elements[0] + training_accuracy_elements[1])/(all_data.shape[0]-fold_size)
+    #training_accuracy = (training_accuracy_elements[0] + training_accuracy_elements[1])/(all_data.shape[0]-fold_size)
 
     #---------------testing accuracy part------------
     log_estimate_test = []
@@ -110,15 +110,15 @@ while fold_index != 10:
         elif (log_estimate_train[i] != Y_train[i]) and (Y_train[i] == 0):
             fold_testing_accuracy_elements[3] += 1
     
-    test_accuracy = (fold_testing_accuracy_elements[0] + fold_testing_accuracy_elements[1])/(fold_size)
+    #test_accuracy = (fold_testing_accuracy_elements[0] + fold_testing_accuracy_elements[1])/(fold_size)
     
-    accuracy_tuple = (training_accuracy,test_accuracy)
-    accuracy_lst.append(accuracy_tuple)
+    #accuracy_tuple = (training_accuracy,test_accuracy)
+    #accuracy_lst.append(accuracy_tuple)
     
     fold_index += 1
 
 for i in range(0,10):
-    print(lambda_parameter_list[i],accuracy_lst[i],"\n")
+    print(training_accuracy_elements,fold_testing_accuracy_elements,"\n")
 
 
 

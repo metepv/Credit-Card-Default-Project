@@ -5,8 +5,6 @@ Module 2:This module takes the decision matrix X and the response vector Y to ma
          with logistic regression.
 """
 import numpy as np
-import time
-import LR_Pre as LR_Pre
 
 def Newton_Raphson(X,Y,iteration_number):
 
