@@ -1,11 +1,7 @@
 import numpy as np
 import time as time
-<<<<<<< HEAD:ProjectDocs/LR_Test.py
-import ProjectDocs.LR_Main_CUDA as LRM_CUDA
-=======
 import LR_Pre as LRP
 import LR_Main as LRM
->>>>>>> 3006f3a3bb4b1dd73c6973fa50e75fa28cdc9af9:LR_Test.py
 
 start_time = time.time()
 (design_matrix,response) = LRP.data_to_matrix_function()
