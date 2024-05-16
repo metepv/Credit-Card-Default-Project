@@ -193,7 +193,7 @@ for k in range (len(X_Test)):
     #X_Train_2=np.array([X_Train[1]])
     X_Test_1=np.array([X_Test[k]])
     Y_Train_1=np.array([Y_Train[k]])
-    results=Shallow_Neural_Network(X_Train_1,sum_and_average_arrays(*input_hidden_weights_list),sum_and_average_arrays(*hidden_output_weights_list))
+    results=Shallow_Neural_Network(X_Test_1,sum_and_average_arrays(*input_hidden_weights_list),sum_and_average_arrays(*hidden_output_weights_list))
     #results=Shallow_Neural_Network(X_Test_1,input_hidden_weights_list[k],hidden_output_weights_list[k])
     resultlist.append(results)
 
@@ -207,21 +207,21 @@ negative=0
 positive=0
 
 
-for e in range(0,len(Y_Train)):
-    if Y_Train[e]==1:
+for e in range(0,len(Y_Test)):
+    if Y_Test[e]==1:
         positive+=1
     else:
         negative+=1
 
 for i in range(0,len(resultlist)):
         #print(resultlist[i][0],Y_Train[i])
-        if (resultlist[i][0] == Y_Train[i]) and (resultlist[i][0] == 1):
+        if (resultlist[i][0] == Y_Test[i]) and (resultlist[i][0] == 1):
             true_positive += 1
-        elif (resultlist[i][0] == Y_Train[i]) and (resultlist[i][0] == 0):
+        elif (resultlist[i][0] == Y_Test[i]) and (resultlist[i][0] == 0):
             true_negative += 1
-        elif (resultlist[i][0] != Y_Train[i]) and (resultlist[i][0] == 1):
+        elif (resultlist[i][0] != Y_Test[i]) and (resultlist[i][0] == 1):
             false_positive += 1
-        elif (resultlist[i][0] != Y_Train[i]) and (resultlist[i][0] == 0):
+        elif (resultlist[i][0] != Y_Test[i]) and (resultlist[i][0] == 0):
             false_negative += 1
             
 
