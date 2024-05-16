@@ -1,14 +1,14 @@
-"""
-SUPPORT VECTOR MACHINE
-WORK IN PROGRESS.............
-"""
+#EEE 485: Statsitical Learning and Data Analytics Term Project
+#Support Vector Machine Algorithm Implementation
+
 import numpy as np
 import random
 import math
-import Logistic_Regression_Preprocess as LRP
+import LR_Pre as LRP
 import pandas as pd
 
 def data_to_matrix_function():
+
     #this function will take the raw data and column size
     #and will return the main X decision matrix as an output.
 
