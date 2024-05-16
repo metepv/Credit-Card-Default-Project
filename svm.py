@@ -1,4 +1,4 @@
-#EEE 485: Statsitical Learning and Data Analytics Term Project
+#EEE 485: Statistical Learning and Data Analytics Term Project
 #Support Vector Machine Algorithm Implementation
 
 import numpy as np
